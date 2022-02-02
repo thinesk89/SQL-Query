@@ -1,0 +1,145 @@
+Basic SQL Coding - Creating a table called "Movies" and performing SQL Queries on the table.
+
+PROC SQL;
+
+CREATE TABLE Movies (
+		Id int,
+		Title varchar(255),
+		Director varchar(255),
+		Year int,
+		Length_minutes int
+		);
+QUIT;
+
+PROC SQL;
+		
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (1, 'Toy Story', 'John Lasseter', 1995, 81);
+QUIT;
+
+PROC SQL;
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (2, 'A Bugs Life', 'John Lasseter', 1998, 95);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (3, 'Toy Story 2', 'John Lasseter', 1999, 93);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (4, 'Monsters Inc', 'Pete Docter', 2001, 92);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (5, 'Finding Nemo', 'Andrew Stanton', 2003, 107);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (6, 'The Incredibles', 'Brad Bird', 2004, 116);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (7, 'Cars', 'John Lasseter', 2006, 117);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (8, 'Ratatouille', 'Brad Bird', 2007, 115);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (9, 'WALL-E', 'Andrew Stanton', 2008, 104);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (10, 'Up', 'Peter Docter', 2009, 101);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (11, 'Toy Story 3', 'Lee Unkrich', 2010, 103);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (12, 'Cars 2', 'John Lasseter', 2011, 120);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (13, 'Brave', 'Brenda Chapman', 2012, 102);
+
+INSERT INTO Movies (Id, Title, Director, Year, Length_minutes)
+VALUES (14, 'Monsters University', 'Dan Scanlon', 2013, 110);
+
+QUIT;
+
+/* Once the table has been created, SQL Queries can be performed */
+
+/* Find movie with Id of 6 */
+
+PROC SQL;
+
+SELECT *FROM Movies
+
+WHERE Id = 6;
+
+QUIT;
+
+/* Where movie released between 2000 and 2010 */
+
+PROC SQL;
+
+SELECT *FROM Movies
+WHERE Year BETWEEN 2000 AND 2010;
+
+QUIT;
+
+/*Where movies not released in the years 2000 - 2010 */
+
+PROC SQL;
+
+SELECT Title, Year FROM Movies
+WHERE Year < 2000 OR Year > 2010;
+
+QUIT;
+
+/*Find all Toy Story Movies */
+
+PROC SQL;
+
+SELECT Title, Director, Year FROM Movies
+WHERE Title LIKE 'Toy Story%';
+
+QUIT;
+
+/*Find all movies Directed by John Lasseter */
+
+PROC SQL;
+
+SELECT Title, Director FROM Movies
+WHERE Director = 'John Lasseter';
+
+QUIT;
+
+/* Find all movies and director NOT directed by John Lasseter */
+
+PROC SQL;
+
+SELECT Title, Director FROM Movies
+WHERE Director NOT LIKE 'John Lasseter';
+
+QUIT;
+
+/* List all Directors in alphabetical order */
+
+PROC SQL;
+
+SELECT DISTINCT Director FROM Movies
+ORDER BY Director ASC;
+
+QUIT;
+
+/* List the last 4 movies released ordered from most recent to last */
+
+PROC SQL OUTOBS=4;
+
+SELECT Title, Year FROM Movies
+ORDER BY Year DESC;
+
+QUIT;
+
+/* List first 5 movies listed alphabetically */
+
+PROC SQL OUTOBS=5;
+
+SELECT Title, Director FROM Movies
+ORDER BY Title ASC;
+
+QUIT;
